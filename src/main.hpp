@@ -1,23 +1,19 @@
 // chrlauncher
-// Copyright (c) 2015-2019 Henry++
+// Copyright (c) 2015-2020 Henry++
 
 #ifndef __MAIN_H__
 #define __MAIN_H__
 
-#include <windows.h>
-#include <commctrl.h>
+#include "routine.hpp"
+
 #include "resource.hpp"
 #include "app.hpp"
 
 // config
-#define WM_TRAYICON WM_APP + 1
 #define UID 2008
-
 #define LANG_MENU 0
 
-// libs
-#pragma comment(lib, "ntdll.lib")
-#pragma comment(lib, "version.lib")
+#define CHROMIUM_UPDATE_URL L"https://chromium.woolyss.com/api/v3/?os=windows&bit=%d&type=%s&out=string"
 
 struct BROWSER_INFORMATION
 {
@@ -26,15 +22,12 @@ struct BROWSER_INFORMATION
 	bool is_forcecheck = false;
 	bool is_waitdownloadend = false;
 	bool is_opennewwindow = false;
-
-	bool is_ischecked = false;
-	bool is_isdownloaded = false;
-	bool is_isinstalled = false;
+	bool is_onlyupdate = false;
 
 	time_t timestamp = 0;
 
 	INT check_period = 0;
-	UINT architecture = 0;
+	INT architecture = 0;
 
 	WCHAR current_version[32] = {0};
 	WCHAR new_version[32] = {0};
